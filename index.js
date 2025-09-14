@@ -13,6 +13,9 @@ const bcrypt = require("bcrypt");
 
 const { z } = require("zod");
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 app.use(express.json());
 
 app.post("/signup", async function (req, res) {
@@ -83,7 +86,7 @@ app.post("/signin", async function (req, res) {
 });
 
 async function main() {
-    await mongoose.connect("mongodb+srv://joshivaibhav:TdmUFHtotsKGtZNz@cluster0.mpy1won.mongodb.net/bookmark-app-database");
+    await mongoose.connect(process.env.MONGODB_CON);
     app.listen(3000);
 }
 
