@@ -51,6 +51,37 @@ app.post("/signup", async function (req, res) {
 
 });
 
+app.post("/signin", async function (req, res) {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const response = await UserModel.findOne({
+        email: email
+    })
+
+    if(!response) {
+        return res.json({
+            message: "User does not exist"
+        })
+    }
+
+    const passwordMatched = await bcrypt.compare(password, response.password);
+
+    if(passwordMatched) {
+        const token = jwt.sign({
+            id: response._id
+        }, JWT_SECRET);
+
+        res.json({
+            token: token
+        })
+    } else {
+        res.status(403).json({
+            message: "Invalid Credentials"
+        })
+    }
+});
+
 async function main() {
     await mongoose.connect("mongodb+srv://joshivaibhav:TdmUFHtotsKGtZNz@cluster0.mpy1won.mongodb.net/bookmark-app-database");
     app.listen(3000);
