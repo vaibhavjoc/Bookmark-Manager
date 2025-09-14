@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+
+<body>
+    <div id="signup-container" style="display: none;">
+        <h1 class="heading">Sign Up</h1>
+        <input type="text" placeholder="Username" id="signup-username">
+        <input type="password" placeholder="Password" id="signup-password">
+        <button onclick="signup()">Register</button>
+        <button onclick="moveTosignin()">Already Have an Account? Sign Up</button>
+    </div>
+    <div id="signin-container" style="display: block;">
+        <h1 class="heading">Sign In</h1>
+        <input type="text" placeholder="Username" id="signin-username">
+        <input type="password" placeholder="Password" id="signin-password">
+        <button onclick="signin()">Log In</button>
+        <button onclick="moveToSignup()">Don't Have an Account? Register</button>
+    </div>
+
+    <div id="bookmarks-container" style="display: none;">
+        <h1>Bookmarks</h1>
+        <button id="logout-btn" onclick="logout()">Logout</button>
+
+        <div id="bookmarks-input-container">
+            <input type="text" placeholder="Add a new Bookmark ...">
+            <button onclick="addBookmark()">Add</button>
+        </div>
+
+        <div id="bookmarks-list"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
