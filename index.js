@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 const { UserModel } = require("./db");
 
-const { auth, JWT_SECRET } = require("./auth")
+const { auth } = require("./auth")
 
 const bcrypt = require("bcrypt");
 
@@ -15,6 +15,10 @@ const { z } = require("zod");
 
 const dotenv = require("dotenv");
 dotenv.config();
+
+const path = require("path")
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.json());
 
@@ -32,10 +36,11 @@ app.post("/signup", async function (req, res) {
 
     const parsedWithSuccess = requiredBody.safeParse(req.body);
 
-    if (!parsedWithSuccess) {
-        return res.json({
+    if (!parsedWithSuccess.success) {
+        res.json({
             message: "Invalid Format"
         });
+        return
     }
 
     const email = req.body.email;
@@ -62,7 +67,7 @@ app.post("/signin", async function (req, res) {
         email: email
     })
 
-    if(!response) {
+    if (!response) {
         return res.json({
             message: "User does not exist"
         })
@@ -70,13 +75,14 @@ app.post("/signin", async function (req, res) {
 
     const passwordMatched = await bcrypt.compare(password, response.password);
 
-    if(passwordMatched) {
+    if (passwordMatched) {
         const token = jwt.sign({
             id: response._id
-        }, JWT_SECRET);
+        }, process.env.JWT_SECRET);
 
         res.json({
-            token: token
+            token: token,
+            message: "You are Logged In Successfully"
         })
     } else {
         res.status(403).json({
@@ -84,6 +90,18 @@ app.post("/signin", async function (req, res) {
         })
     }
 });
+
+app.post("/bookmark", auth, async function (req, res) {
+    
+})
+
+app.get("/bookmarks", auth, async function (req, res) {
+
+})
+
+app.delete("/bookmark", auth, async function (req, res) {
+
+})
 
 async function main() {
     await mongoose.connect(process.env.MONGODB_CON);
