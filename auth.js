@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = process.env.JWT_SECRET_KEY;
+const process = require('process');
+const dotenv = require("dotenv");
+dotenv.config();
 
 function auth(req, res, next) {
     const token = req.headers.token;
@@ -10,10 +12,10 @@ function auth(req, res, next) {
         })
     }
 
-    const decodedData = jwt.verify(token, JWT_SECRET);
+    const decodedData = jwt.verify(token, process.env.JWT_SECRET);
 
     if(decodedData) {
-        req.userId = decodedData.indexOf;
+        req.userId = decodedData.id;
         next()
     } else {
         res.status(403).json({
@@ -23,6 +25,5 @@ function auth(req, res, next) {
 }
 
 module.exports = {
-    auth,
-    JWT_SECRET
+    auth
 }

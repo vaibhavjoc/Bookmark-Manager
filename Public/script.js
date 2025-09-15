@@ -9,15 +9,13 @@ function moveToSignin() {
     document.getElementById("signup-container").style.display = "none";
     document.getElementById("signin-container").style.display = "block";
     document.getElementById("bookmarks-container").style.display = "none";
-
-    // call the getBookmarks function
 }
 function showBookmarks() {
     document.getElementById("signup-container").style.display = "none";
     document.getElementById("signin-container").style.display = "none";
     document.getElementById("bookmarks-container").style.display = "block";
 
-    // call it when you successfully logged in
+    // call the getBookmarks function
 }
 
 async function signup() {
@@ -59,6 +57,8 @@ async function signin() {
         if (response.data.message === "You are Logged In Successfully") {
             localStorage.setItem("token", response.data.token)
             showBookmarks();
+        } else {
+            alert(response.data.message)
         }
     } catch (error) {
         console.error("Error while signing up:", error);
@@ -66,4 +66,17 @@ async function signin() {
 
     document.getElementById("signup-email").value = "";
     document.getElementById("signup-password").value = "";
+}
+
+async function getBookmarks() {
+    try {
+        const response = await axios.get("http://localhost:3000/bookmarks", {
+            headers: { token: localStorage.getItem("token") }
+        });
+
+        const bookmarksList = document.getElementById("bookmarks-list");
+        bookmarksList.innerHTML = ""
+    } catch (error) {
+        console.log(error)
+    }
 }

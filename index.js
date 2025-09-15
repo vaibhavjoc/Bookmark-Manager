@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const mongoose = require("mongoose");
 
-const { UserModel } = require("./db");
+const { UserModel, BookmarkMOdel } = require("./db");
 
 const { auth } = require("./auth")
 
@@ -92,15 +92,40 @@ app.post("/signin", async function (req, res) {
 });
 
 app.post("/bookmark", auth, async function (req, res) {
-    
+    const userId = req.userId;
+    const title = req.body.title;
+
+    if(!title) {
+        return res.json({
+            message: "Title can't be empty"
+        })
+    }
+
+    const bookmark = await BookmarkMOdel.create({
+        title: title,
+        userId
+    })
+
+    res.json({
+        userId
+    })
 })
 
 app.get("/bookmarks", auth, async function (req, res) {
 
+    const userId = req.userId;
+
+    const bookmarks = await BookmarkMOdel.find({
+        userId: userId
+    })
+
+    res.json({
+        bookmarks
+    })
 })
 
 app.delete("/bookmark", auth, async function (req, res) {
-
+    
 })
 
 async function main() {
