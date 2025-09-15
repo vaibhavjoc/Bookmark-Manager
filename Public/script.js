@@ -75,8 +75,17 @@ async function getBookmarks() {
         });
 
         const bookmarksList = document.getElementById("bookmarks-list");
-        bookmarksList.innerHTML = ""
+        bookmarksList.innerHTML = "";
     } catch (error) {
         console.log(error)
     }
+}
+
+function createBookmarkElement(bookmark) {
+    const bookmarkInput = document.createElement("input");
+
+}
+
+function deleteBookmark(id) {
+    const deleteBtn = document.createElement("button");
 }

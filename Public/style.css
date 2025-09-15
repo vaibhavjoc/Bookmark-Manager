@@ -1,12 +1,150 @@
-#signup-container {
-    border: 1px solid black;
-    text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+/* ===== General Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-#signin-container {
-    border: 1px solid black;
-    text-align: center;
+
+body {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: #0f032b; /* dark backdrop */
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
 }
+
+/* ===== Container Styling ===== */
+#signup-container,
+#signin-container,
 #bookmarks-container {
-    border: 1px solid black;
-    text-align: center;
+  background: #180442;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  width: 350px;
+  max-width: 90%;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ===== Headings ===== */
+.heading, h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ===== Input Fields ===== */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.6rem 0;
+  border: none;
+  border-radius: 8px;
+  background: #2a165c;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+input:focus {
+  background: #3d1f7a;
+  box-shadow: 0 0 6px #7a4dff;
+}
+
+/* ===== Primary Buttons (Main Actions) ===== */
+button {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.6rem 0;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4e1ca1, #7a4dff);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(122, 77, 255, 0.5);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ===== Secondary Buttons (Switch Forms, Less Priority) ===== */
+button.secondary {
+  background: transparent;
+  border: 2px solid #7a4dff;
+  color: #7a4dff;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+button.secondary:hover {
+  background: rgba(122, 77, 255, 0.1);
+  box-shadow: none;
+  transform: none;
+}
+
+button.secondary:active {
+  transform: scale(0.98);
+}
+
+/* ===== Bookmark Section ===== */
+#bookmarks-container {
+  width: 500px;
+}
+
+#bookmarks-input-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#bookmarks-input-container input {
+  flex: 1;
+}
+
+#bookmarks-list {
+  text-align: left;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+#bookmarks-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#bookmarks-list::-webkit-scrollbar-thumb {
+  background: #7a4dff;
+  border-radius: 3px;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
