@@ -8,8 +8,15 @@ const UserSchema = new Schema({
     password: String
 })
 
+const BookmarkSchema = new Schema({
+    title: String,
+    userId: ObjectId
+})
+
 const UserModel = mongoose.model("users", UserSchema);
+const BookmarkMOdel = mongoose.model("bookmarks", BookmarkSchema)
 
 module.exports = {
-    UserModel
+    UserModel,
+    BookmarkMOdel
 }
