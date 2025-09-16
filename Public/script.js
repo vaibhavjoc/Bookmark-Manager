@@ -89,3 +89,20 @@ function createBookmarkElement(bookmark) {
 function deleteBookmark(id) {
     const deleteBtn = document.createElement("button");
 }
+
+async function addBookmark() {
+    const title = document.getElementById("bookmarks-input")
+    try {
+        const response = await axios.post("http://localhost:3000/bookmarks",
+            title,
+            {
+                headers: { token: localStorage.getItem("token") }
+            });
+
+        alert(response.data.message);
+
+        getBookmarks();
+    } catch (error) {
+
+    }
+}
