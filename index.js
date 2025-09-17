@@ -16,7 +16,7 @@ const { z } = require("zod");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const path = require("path")
+const path = require("path");
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -125,7 +125,17 @@ app.get("/bookmarks", auth, async function (req, res) {
 })
 
 app.delete("/bookmark", auth, async function (req, res) {
-    
+    const bookmarkId = req.body;
+    const userId = req.userId;
+
+    const bookmark = await BookmarkMOdel.deleteOne({
+        userId,
+        bookmarkId
+    });
+
+    res.json({
+        message: 'Bookmark Deleted'
+    })
 })
 
 async function main() {
