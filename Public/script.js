@@ -66,6 +66,13 @@ async function signin() {
     document.getElementById("signup-password").value = "";
 }
 
+async function logout() {
+    localStorage.removeItem("token");
+    alert("You are logged out successfully");
+
+    moveToSignin();
+}
+
 async function getBookmarks() {
 
     try {
