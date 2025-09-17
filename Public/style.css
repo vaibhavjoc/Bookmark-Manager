@@ -1,144 +1,247 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+
 /* ===== General Reset ===== */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Segoe UI", Roboto, sans-serif;
-  background: #0f032b; /* dark backdrop */
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background: #0f032b;
+    /* dark backdrop */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
 }
 
 /* ===== Container Styling ===== */
 #signup-container,
 #signin-container,
 #bookmarks-container {
-  background: #180442;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-  width: 350px;
-  max-width: 90%;
-  text-align: center;
-  animation: fadeIn 0.6s ease-in-out;
+    background: #180442;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    width: 350px;
+    max-width: 90%;
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
 }
 
 /* ===== Headings ===== */
-.heading, h1 {
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-  color: #ffffff;
-  font-weight: 600;
+.heading,
+h1 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 /* ===== Input Fields ===== */
 input[type="text"],
 input[type="password"] {
-  width: 100%;
-  padding: 0.75rem;
-  margin: 0.6rem 0;
-  border: none;
-  border-radius: 8px;
-  background: #2a165c;
-  color: #ffffff;
-  font-size: 1rem;
-  outline: none;
-  transition: 0.3s ease;
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.6rem 0;
+    border: none;
+    border-radius: 8px;
+    background: #2a165c;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s ease;
 }
 
 input::placeholder {
-  color: #aaa;
+    color: #aaa;
 }
 
 input:focus {
-  background: #3d1f7a;
-  box-shadow: 0 0 6px #7a4dff;
+    background: #3d1f7a;
+    box-shadow: 0 0 6px #7a4dff;
 }
 
 /* ===== Primary Buttons (Main Actions) ===== */
 button {
-  width: 100%;
-  padding: 0.75rem;
-  margin: 0.6rem 0;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #4e1ca1, #7a4dff);
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.6rem 0;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #4e1ca1, #7a4dff);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(122, 77, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(122, 77, 255, 0.5);
 }
 
 button:active {
-  transform: scale(0.98);
+    transform: scale(0.98);
 }
 
 /* ===== Secondary Buttons (Switch Forms, Less Priority) ===== */
 button.secondary {
-  background: transparent;
-  border: 2px solid #7a4dff;
-  color: #7a4dff;
-  font-weight: 500;
-  transition: 0.3s ease;
+    background: transparent;
+    border: 2px solid #7a4dff;
+    color: #7a4dff;
+    font-weight: 500;
+    transition: 0.3s ease;
 }
 
 button.secondary:hover {
-  background: rgba(122, 77, 255, 0.1);
-  box-shadow: none;
-  transform: none;
+    background: rgba(122, 77, 255, 0.1);
+    box-shadow: none;
+    transform: none;
 }
 
 button.secondary:active {
-  transform: scale(0.98);
+    transform: scale(0.98);
 }
 
-/* ===== Bookmark Section ===== */
+/* ===== Bookmarks Container ===== */
 #bookmarks-container {
-  width: 500px;
+  background: #180442;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  width: 600px;
+  max-width: 95%;
+  animation: fadeIn 0.6s ease-in-out;
 }
 
+/* ===== Header with Logout Button ===== */
+#bookmarks-container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+#bookmarks-container-header h1 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Logout button */
+#logout-btn {
+  background: #e63946;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#logout-btn:hover {
+  background: #ff4757;
+}
+
+/* ===== Input + Add Button Row ===== */
 #bookmarks-input-container {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 #bookmarks-input-container input {
-  flex: 1;
+  flex: 1; /* takes maximum space */
+  background: #2a165c;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  color: #fff;
+  font-size: 1rem;
 }
 
-#bookmarks-list {
-  text-align: left;
-  max-height: 300px;
-  overflow-y: auto;
-  padding-right: 5px;
+#bookmarks-input-container input::placeholder {
+  color: #bbb;
 }
 
-#bookmarks-list::-webkit-scrollbar {
-  width: 6px;
+#bookmarks-input-container button {
+  flex: 0 0 100px; /* fixed smaller width */
+  background: #4e1ca1;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-#bookmarks-list::-webkit-scrollbar-thumb {
+#bookmarks-input-container button:hover {
   background: #7a4dff;
-  border-radius: 3px;
 }
 
-/* ===== Animations ===== */
-@keyframes fadeIn {
+/* ===== Bookmarks List ===== */
+#bookmarks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.bookmark-item {
+  background: #2a165c;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Action buttons */
+.bookmark-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+
+/* Delete Button - smaller size */
+.bookmark-actions .delete-btn {
+  background: #e63946;
+  border: none;
+  padding: 0.3rem 0.7rem; /* smaller padding */
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 500;
+  font-size: 0.85rem; /* smaller text */
+}
+
+.bookmark-actions .delete-btn:hover {
+  background: #ff4757;
+}
+ /* ===== Bookmark Item Animation ===== */
+.bookmark-item {
+  background: #2a165c;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: slideIn 0.4s ease forwards;
+}
+
+/* Keyframes for sliding animation */
+@keyframes slideIn {
   from {
     opacity: 0;
     transform: translateY(15px);
