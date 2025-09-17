@@ -95,7 +95,7 @@ app.post("/bookmark", auth, async function (req, res) {
     const userId = req.userId;
     const title = req.body.title;
 
-    if(!title) {
+    if (!title) {
         return res.json({
             message: "Title can't be empty"
         })
@@ -124,13 +124,13 @@ app.get("/bookmarks", auth, async function (req, res) {
     })
 })
 
-app.delete("/bookmark", auth, async function (req, res) {
-    const bookmarkId = req.body;
+app.delete("/bookmark/:id", auth, async function (req, res) {
+    const { id } = req.params;
     const userId = req.userId;
 
     const bookmark = await BookmarkMOdel.deleteOne({
         userId,
-        bookmarkId
+        _id: id
     });
 
     res.json({
