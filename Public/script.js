@@ -69,6 +69,9 @@ async function signin() {
 }
 
 async function getBookmarks() {
+
+    document.getElementById("bookmarks-input").value = "";
+
     try {
         const response = await axios.get("http://localhost:3000/bookmarks", {
             headers: { token: localStorage.getItem("token") }
@@ -76,18 +79,50 @@ async function getBookmarks() {
 
         const bookmarksList = document.getElementById("bookmarks-list");
         bookmarksList.innerHTML = "";
+
+        if (response.data.length) {
+            response.data.forEach((bookmark) => {
+                const bookmarkElement = createBookmarkElement(bookmark);
+                bookmarksList.appendChild(bookmarkElement);
+            });
+        }
+
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 }
 
 function createBookmarkElement(bookmark) {
-    const bookmarkInput = document.createElement("input");
+    const bookmarkDiv = document.createElement("div");
+    bookmarkDiv.className = "bookmark-item";
 
+    const inputEl = createInputElement(bookmark.title);
+    const deleteBtn = deleteBookmarkBtn(bookmark._id);
+
+    bookmarkDiv.appendChild(inputEl);
+    bookmarkDiv.appendChild(deleteBtn);
+
+    return bookmarkDiv;
 }
 
-function deleteBookmark(id) {
+function createInputElement(value) {
+    const inputElement = document.createElement("input");
+    inputElement.type = "text";
+    inputElement.value = value;
+    inputElement.readOnly = true;
+
+    return inputElement;
+}
+
+function deleteBookmarkBtn(id) {
     const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+
+    deleteBtn.onclick = function () {
+        deleteBookmark(id);
+    }
+
+    return deleteBtn;
 }
 
 async function addBookmark() {
@@ -102,7 +137,9 @@ async function addBookmark() {
         alert(response.data.message);
 
         getBookmarks();
-    } catch (error) {
 
+        document.getElementById("bookmarks-input").value = "";
+    } catch (error) {
+        console.log("Error while adding Bookmark")
     }
 }
