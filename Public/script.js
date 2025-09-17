@@ -1,5 +1,3 @@
-const { z } = require("zod");
-
 function moveToSignup() {
     document.getElementById("signup-container").style.display = "block";
     document.getElementById("signin-container").style.display = "none";
@@ -15,7 +13,7 @@ function showBookmarks() {
     document.getElementById("signin-container").style.display = "none";
     document.getElementById("bookmarks-container").style.display = "block";
 
-    // call the getBookmarks function
+    getBookmarks();
 }
 
 async function signup() {
@@ -70,8 +68,6 @@ async function signin() {
 
 async function getBookmarks() {
 
-    document.getElementById("bookmarks-input").value = "";
-
     try {
         const response = await axios.get("http://localhost:3000/bookmarks", {
             headers: { token: localStorage.getItem("token") }
@@ -80,11 +76,13 @@ async function getBookmarks() {
         const bookmarksList = document.getElementById("bookmarks-list");
         bookmarksList.innerHTML = "";
 
-        if (response.data.length) {
-            response.data.forEach((bookmark) => {
-                const bookmarkElement = createBookmarkElement(bookmark);
-                bookmarksList.appendChild(bookmarkElement);
-            });
+        const bookmarks = response.data.bookmarks;
+
+        if (bookmarks && bookmarks.length) {
+            bookmarks.forEach((bookmark) => { // <--- CORRECTED
+              const bookmarksElement = createBookmarkElement(bookmark);
+              bookmarksList.appendChild(bookmarksElement);
+          });
         }
 
     } catch (error) {
@@ -97,6 +95,8 @@ function createBookmarkElement(bookmark) {
     bookmarkDiv.className = "bookmark-item";
 
     const inputEl = createInputElement(bookmark.title);
+    inputEl.readOnly = true;
+
     const deleteBtn = deleteBookmarkBtn(bookmark._id);
 
     bookmarkDiv.appendChild(inputEl);
@@ -126,10 +126,12 @@ function deleteBookmarkBtn(id) {
 }
 
 async function addBookmark() {
-    const title = document.getElementById("bookmarks-input")
+    const inputElement = document.getElementById("bookmarks-input");
+    const title = inputElement.value;
+
     try {
-        const response = await axios.post("http://localhost:3000/bookmarks",
-            title,
+        const response = await axios.post("http://localhost:3000/bookmark",
+            { title },
             {
                 headers: { token: localStorage.getItem("token") }
             });
@@ -140,6 +142,18 @@ async function addBookmark() {
 
         document.getElementById("bookmarks-input").value = "";
     } catch (error) {
-        console.log("Error while adding Bookmark")
+        console.log("Error while adding Bookmark:", error)
+    }
+}
+
+async function deleteBookmark(id) {
+    try {
+        await axios.delete(`http://localhost:3000/bookmark/${id}`, {
+            headers: { token: localStorage.getItem("token") },
+        });
+
+        getBookmarks();
+    } catch (error) {
+        console.log('Error while deleting a bookmark:', error)
     }
 }
