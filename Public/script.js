@@ -143,8 +143,6 @@ async function addBookmark() {
                 headers: { token: localStorage.getItem("token") }
             });
 
-        alert(response.data.message);
-
         getBookmarks();
 
         document.getElementById("bookmarks-input").value = "";
