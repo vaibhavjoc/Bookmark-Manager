@@ -21,7 +21,7 @@ async function signup() {
     const password = document.getElementById("signup-password").value;
 
     try {
-        const response = await axios.post("http://localhost:3000/signup", {
+        const response = await axios.post("https://bookmark-manager-six-sooty.vercel.app/signup", {
             email,
             password
         });
@@ -45,7 +45,7 @@ async function signin() {
     const password = document.getElementById("signin-password").value;
 
     try {
-        const response = await axios.post("http://localhost:3000/signin", {
+        const response = await axios.post("https://bookmark-manager-six-sooty.vercel.app/signin", {
             email,
             password
         });
@@ -76,7 +76,7 @@ async function logout() {
 async function getBookmarks() {
 
     try {
-        const response = await axios.get("http://localhost:3000/bookmarks", {
+        const response = await axios.get("https://bookmark-manager-six-sooty.vercel.app/bookmarks", {
             headers: { token: localStorage.getItem("token") }
         });
 
@@ -137,7 +137,7 @@ async function addBookmark() {
     const title = inputElement.value;
 
     try {
-        const response = await axios.post("http://localhost:3000/bookmark",
+        const response = await axios.post("https://bookmark-manager-six-sooty.vercel.app/bookmark",
             { title },
             {
                 headers: { token: localStorage.getItem("token") }
@@ -153,7 +153,7 @@ async function addBookmark() {
 
 async function deleteBookmark(id) {
     try {
-        await axios.delete(`http://localhost:3000/bookmark/${id}`, {
+        await axios.delete(`https://bookmark-manager-six-sooty.vercel.app/${id}`, {
             headers: { token: localStorage.getItem("token") },
         });
 
